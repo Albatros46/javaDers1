@@ -1,0 +1,34 @@
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+public class ObjeYaz {
+    public static void main(String[] args) {
+        Araba araba1=new Araba("Ford","2019","Beyaz",120000.65);
+        Araba araba2=new Araba("Toyata","2017","Kirmizi",95000.75);
+        Araba araba3=new Araba("Audi","2006","Siyah",85000.65);
+        Araba araba4=new Araba("Mistsubishi","2008","Lacivert",60000.65);
+        Araba araba5=new Araba("Volvo","2019","Mavi",260000.65);
+        Araba araba6=new Araba("Volkswagen","2009","Sari",125000.65);
+        
+        Araba[] araba_array={araba1,araba2,araba3,araba4,araba5,araba6};
+        ArrayList<Araba> araba_list= new ArrayList<Araba>(Arrays.asList(araba_array));
+        
+        try(ObjectOutputStream out=new ObjectOutputStream(new FileOutputStream("araba.bin"))){
+            out.writeObject(araba_array);
+            out.writeObject(araba_list);
+           // Araba.setAraba_sayisi(100);
+        } catch (FileNotFoundException ex) {
+            System.out.println("FileNotFoundException-Dosya bulunamadi!");
+        } catch (IOException ex) {
+            System.out.println("IOException olustu.");
+        }
+    }
+}

@@ -1,0 +1,40 @@
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+//Veriler okundugunda araba.java da  private transient String  renk; 
+//kullanildigindan renk degeri null olarak karsimiza cikacaktir. 
+//Integer deger olsaydi 0 olarak karsimiza cikardi
+
+public class ObjeOku {
+    public static void main(String[] args) throws ClassNotFoundException{
+        try(ObjectInputStream in=new ObjectInputStream(new FileInputStream("araba.bin"))){
+            Araba[] araba_array=(Araba[])in.readObject();
+            ArrayList<Araba> araba_list=(ArrayList<Araba>)in.readObject();
+            
+            Araba.setAraba_sayisi(100);
+            
+            for(Araba a: araba_array){
+                System.out.println(a);
+               // System.out.println("Araba Sayisi : "+Araba.getAraba_sayisi());
+                System.out.println("_______________________________");
+            }
+            
+            for(Araba a: araba_list){
+                System.out.println(a);
+              //  System.out.println("Araba Sayisi : "+Araba.getAraba_sayisi());
+                System.out.println("================================");
+            }
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println("Dosya Bulunamadi!");
+        } catch (IOException ex) {
+            System.out.println("IOException hatasi olustu.");
+        }
+    }
+}

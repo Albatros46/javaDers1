@@ -1,0 +1,44 @@
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+public class StreamFileInput {
+    public static void main(String[] args) {
+	FileInputStream fis=null;
+        try {
+            fis=new FileInputStream("dosya.txt");
+            try {
+                System.out.println("Okunan ASCI Kod        : "+fis.read()); //Bir karakter okumak istiyorsak ASCI karaktede yazacaktir
+                System.out.println("Okunan Karakter Degeri : "+(char)fis.read());//ASCI kodun karsiligi
+                fis.skip(0);//12. karateri okumak icin
+                System.out.println("Hedeflenen Karakter : "+(char)fis.read());//12. karateri okumak icin
+                
+                System.out.println("---------------");
+                //Dosyadaki tum degerleri okumak icin dongu kullancagiz
+                int deger;
+                String s="";
+                while((deger=fis.read())!=-1){//deger -1 olana kadar okuyacak
+                    s+=(char)deger;//okunan degerleri ASCI koddan char a donusturecek
+                }
+                System.out.println("Dosya Icerigi : "+s);
+            } catch (IOException ex) {
+                Logger.getLogger(StreamFileInput.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("Dosya bulunamadi...");
+        }finally{
+            try {
+                if (fis!=null){//Eger bulundu ise kapatma islemi gerceklessin
+                    fis.close(); 
+                }
+                
+            } catch (IOException ex) {
+                System.out.println("Dosya kapatilirken Hata olustu...");
+            }
+        }
+    }
+}

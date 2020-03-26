@@ -1,0 +1,8 @@
+Servet Akcadag,70,90,80
+Ahmet Karaca,50,80,60
+Zeynep Cobanlar,95,65,75
+Oguz AkCa,50,40,80
+Samet Dað,90,70,80
+Ilknur Demir,60,90,30
+Cafer Arpa,30,25,90
+Kenan Karaca,60,70,20
