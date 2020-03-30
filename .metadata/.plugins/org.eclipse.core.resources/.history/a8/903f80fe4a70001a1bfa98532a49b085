@@ -1,0 +1,15 @@
+/*
+Buyuk projelerde birden fazla 100 tane belki daha fazla Thread larimiz bulunabilir.
+Butun threadlarin ayný anda calismasi da bellekte gereksiz kullanim harcayacagindan 
+ExecutorService ile biz bu thread lara calisma sartlari/siralari veya thread havuzlari olusturacagiz.
+*/
+public class Main {
+    public static void main(String[] args){
+    	Thread t1=new Thread(new Worker("Servet",1));
+        Thread t2=new Thread(new Worker("Ahmet",2));
+        Thread t3=new Thread(new Worker("Akif",3));
+        Thread t4=new Thread(new Worker("Oguz",4));
+        Thread t5=new Thread(new Worker("Rukiye",5));
+    	
+    }
+}

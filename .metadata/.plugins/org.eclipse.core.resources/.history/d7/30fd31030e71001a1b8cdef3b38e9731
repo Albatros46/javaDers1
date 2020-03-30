@@ -1,0 +1,35 @@
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+public class Main {
+    public static void main(String[] args){
+        ReentrantLockOrn rlo= new ReentrantLockOrn();
+        
+        Thread th1=new Thread(new Runnable(){
+            @Override
+            public void run() {
+               
+            }
+            
+        });
+        
+        Thread th2=new Thread(new Runnable(){
+            @Override
+            public void run() {
+               
+            }
+            
+        });
+        
+        th1.start(); th2.start(); //thread lar calistirildi
+        
+        try {
+            th1.join(); //threadlar beklemeye alindi.
+            th2.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}

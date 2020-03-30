@@ -1,0 +1,40 @@
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+public class ListWorker {
+    Random random=new Random();
+    ArrayList<Integer> list1=new ArrayList<Integer>();
+    ArrayList<Integer> list2=new ArrayList<Integer>();
+    
+    public void list1deger(){
+        for (int i = 0; i < 2000; i++) {
+            list1.add(i); //2000 tane degeri list1 e atacak
+            try {
+                Thread.sleep(1); //1 milisaniye bekleyecek
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ListWorker.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void list2deger(){
+        for (int i = 0; i < 2000; i++) {
+            list2.add(i); //2000 tane degeri list1 e atacak
+            try {
+                Thread.sleep(1); //1 milisaniye bekleyecek
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ListWorker.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void degerAta(){
+        list1deger();
+        list2deger();
+        System.out.println("List1-->"+list1.size()+" List2-->"+list2.size());
+    }
+}

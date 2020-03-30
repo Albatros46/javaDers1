@@ -1,0 +1,23 @@
+
+public class ReentrantLockOrn {
+    private int say=0;
+  
+    public void artir(){//say degislenimiz 10000 defa kadar artacak
+        for (int i = 0; i < 10000; i++) {
+            say++;
+        }
+      
+    }
+    
+    public void thread1Fonksiyonu(){
+        artir();
+    }
+    
+    public void thread2Fonksiyonu(){
+        artir();
+    }
+    
+    public void threadOver(){
+        System.out.println("Sayac : "+say);
+    }
+}

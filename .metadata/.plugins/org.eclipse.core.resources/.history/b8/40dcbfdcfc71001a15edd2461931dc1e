@@ -1,0 +1,12 @@
+
+public class Main {
+	/* 
+    Trehad lar da Runnable interface den run metodu kullanmistik. 
+    fakat run metodu ile thread islemi bitirdikten sonra herhangi bir deger donemiyoruz. 
+    Bunun alternatifi olarak Callable ve Future interface kullanacagiz.
+    */
+	public static void main(String[] args) {
+		
+		
+	}
+}

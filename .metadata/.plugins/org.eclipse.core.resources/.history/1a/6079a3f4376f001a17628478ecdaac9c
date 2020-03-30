@@ -1,0 +1,26 @@
+
+import java.io.Serializable;
+
+
+public class Serialization1 implements Serializable{
+    private int Id;
+    private String isim;
+    private String Bolum;
+    
+    public Serialization1(int Id, String isim, String Bolum) {
+        this.Id = Id;
+        this.isim = isim;
+        this.Bolum = Bolum;
+    }
+
+    @Override
+    public String toString() {
+        //return "Serialization1{" + "Id=" + Id + ", isim=" + isim + ", Bolum=" + Bolum + '}';
+        String Bilgiler="Ogrenci Nu.  : "+Id+
+                    "\nAdi Soyadi : "+isim+
+                    "\nBolumu     : "+Bolum;
+        return Bilgiler;
+    }
+    
+    
+}

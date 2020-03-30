@@ -1,0 +1,11 @@
+
+package com.srvtkcdg.thread1;
+
+
+public class Printer extends Thread{
+    private String isim;
+
+    public Printer(String isim) {
+        this.isim = isim;
+    }
+}

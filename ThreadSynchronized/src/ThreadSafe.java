@@ -1,0 +1,61 @@
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+public class ThreadSafe {
+    private int count =0;
+    
+    public static void main(String[] args){
+        ThreadSafe threadsafe=new ThreadSafe();
+        threadsafe.ThreadCalistir();
+    }
+    
+    public synchronized void Artir(){
+        /*Program her calistiginda ekrana farkli deger vercegi icin 
+        thread lar arasinda senkronizasyonu saglamaliyiz. Bu senkronizasyonu saglamak icin
+        hangi thread degiskene once ulasmis ise o thread in islemi bitene kadar diger thread
+        degiskene erisemeyecek. 
+        
+        ****synchronized kullanarak senkronizasyon saglaniyor
+        *Artik program her calistiginda ayni sonucu verecektir.
+        */
+        count++;
+    }
+    
+    public void ThreadCalistir(){
+        Thread thread1=new Thread(new Runnable(){
+            @Override
+            public void run() {
+                for (int i = 0; i < 5000; i++) {
+                    Artir();
+                }
+            }
+        
+        });
+        
+        System.out.println("-----------------------------------");
+          Thread thread2=new Thread(new Runnable(){
+            @Override
+            public void run() {
+                for (int i = 0; i < 5000; i++) {
+                    Artir();
+                }
+            }
+        
+        });
+          
+        thread1.start(); 
+        thread2.start();
+        
+        try {
+            thread1.join();//Main class i, thread larin calismasini bekletiyoruz.
+            thread2.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ThreadSafe.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Threadlar calismasini tamamladiktan sonra main thread caslacak
+        System.out.println("Sayac Degeri : "+count);
+        //Main thread islem yapmis gibi olacaktir.
+    }
+}

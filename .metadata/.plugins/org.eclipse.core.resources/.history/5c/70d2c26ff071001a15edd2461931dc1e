@@ -1,0 +1,41 @@
+
+import java.util.Random;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+
+public class DeadLockOrnegi {
+    private Hesap hesap1=new Hesap();
+    private Hesap hesap2=new Hesap();
+    private Random random=new Random();
+    private Lock lock1=new ReentrantLock();
+    private Lock lock2=new ReentrantLock();
+    /*2 hesap oldugu icin 2 tane farkli anahtar urettik. 
+    Random deger ise para transferi icin rastgele deger uretecek
+    */
+    public void th1Fonksiyonu(){
+        //Hesap1 den Hesap2 ye 5000 defa para transferi gerceklesecek
+        //Lock lar kullanikmadan calistiginda her calisma durumunda hesaplar 
+        //senkron olmadigi icin farkli sonuclar gostermektedir.
+        lock1.lock(); lock2.lock();
+        for (int i = 0; i < 5000; i++) {
+            Hesap.paraTransferi(hesap1, hesap2, random.nextInt(250));
+        }
+        lock1.unlock(); lock2.unlock();
+    }
+    //--------------------------------------------------------------------------------
+    public void th2Fonksiyonu(){
+        //Hesap2 den Hesap1 ye 5000 defa para transferi gerceklesecek
+        //senkron olmadigi icin farkli sonuclar gostermektedir.
+        lock1.lock(); lock2.lock();
+        for (int i = 0; i < 5000; i++) {
+            Hesap.paraTransferi(hesap2, hesap1, random.nextInt(250));
+        }
+        lock1.unlock(); lock2.unlock(); 
+    }
+    //--------------------------------------------------------------------------------
+    public void thOver(){
+        System.out.println("Hesap 1'in Bakiyesi :"+hesap1.getbakiye()+" Hesap 2'nin Bakiyesi : "+hesap2.getbakiye());
+        System.out.println("Toplam Bakiye : "+(hesap1.getbakiye()+hesap2.getbakiye()));
+    }
+}

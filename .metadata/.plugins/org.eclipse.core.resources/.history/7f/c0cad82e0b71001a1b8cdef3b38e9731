@@ -1,0 +1,13 @@
+
+public class ProducerConsumer {
+	
+	public void producer() {
+		
+		
+	}
+	
+	public void consumer() {
+		
+		
+	}
+}
